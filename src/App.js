@@ -1,12 +1,12 @@
-import Header from "./components/Header";
-import Tasks from "./components/Tasks";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AddTask from "./components/AddTask";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 import About from "./components/About";
 
-function App() {
+const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
 
@@ -60,6 +60,7 @@ function App() {
       method: "DELETE",
     });
 
+    //We should control the response status to decide if we will change the state or not.
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
@@ -92,7 +93,6 @@ function App() {
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
-
         <Route
           path="/"
           exact
@@ -116,6 +116,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
