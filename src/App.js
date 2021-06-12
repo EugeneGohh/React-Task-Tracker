@@ -56,12 +56,13 @@ const App = () => {
 
   // Delete Task
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: "DELETE",
     });
-
     //We should control the response status to decide if we will change the state or not.
-    setTasks(tasks.filter((task) => task.id !== id));
+    res.status === 200
+      ? setTasks(tasks.filter((task) => task.id !== id))
+      : alert("Error Deleting This Task");
   };
 
   // Toggle Reminder
